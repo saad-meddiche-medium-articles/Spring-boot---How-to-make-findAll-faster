@@ -3,6 +3,8 @@ package com.example.demo.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.List;
+
 @Entity @Getter @Setter
 @Builder @AllArgsConstructor @NoArgsConstructor
 public class Author {
@@ -14,4 +16,7 @@ public class Author {
     private String firstName;
 
     private String lastName;
+
+    @OneToMany(mappedBy = "author")
+    private List<Book> books;
 }
