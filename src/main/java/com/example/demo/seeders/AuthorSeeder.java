@@ -35,24 +35,28 @@ public class AuthorSeeder extends Seeder {
     }
 
     private Author buildAuthor() {
-        return Author.builder()
+        Author author = Author.builder()
                 .firstName(faker.name().firstName())
                 .lastName(faker.name().lastName())
-                .books(generateBooks())
                 .build();
+
+        author.setBooks(generateBooks(author));
+
+        return author;
     }
 
-    private Book buildBook() {
+    private Book buildBook(Author author) {
         return Book.builder()
                 .title(faker.book().title())
                 .price(faker.number().randomDouble(2, 10, 100))
+                .author(author)
                 .build();
     }
 
-    private List<Book> generateBooks() {
+    private List<Book> generateBooks(Author author) {
         List<Book> books = new ArrayList<>();
         for (int i = 0; i < authorSeederProperties.getBookPerAuthor(); i++) {
-            books.add(buildBook());
+            books.add(buildBook(author));
         }
         return books;
     }
