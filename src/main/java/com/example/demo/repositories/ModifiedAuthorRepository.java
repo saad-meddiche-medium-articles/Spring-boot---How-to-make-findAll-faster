@@ -10,6 +10,6 @@ import java.util.List;
 @Repository
 public interface ModifiedAuthorRepository extends JpaRepository<Author,Long> {
 
-    @EntityGraph(attributePaths = {"books"})
-    List<Author> findAllBy();
+    @Override @EntityGraph(attributePaths = {"books"})
+    List<Author> findAll();
 }
