@@ -1,0 +1,36 @@
+# Database Configuration
+spring.datasource:
+  url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/demo?reWriteBatchedInserts=true}
+  username: ${DATABASE_USERNAME:user}
+  password: ${DATABASE_PASSWORD:1234}
+  driver-class-name: ${DATABASE_DRIVER:org.postgresql.Driver}
+
+# JPA Configuration
+spring.jpa:
+  hibernate.ddl-auto: ${JPA_HIBERNATE_DDL_AUTO:update}
+  show-sql: ${JPA_SHOW_SQL:false}
+  properties:
+    hibernate:
+      format_sql : ${JPA_FORMAT_SQL:true}
+      dialect: ${JPA_HIBERNATE_DIALECT:org.hibernate.dialect.PostgreSQLDialect}
+
+# Logger Configuration
+logging.level.org:
+  hibernate:
+    SQL: DEBUG
+    type.descriptor.sql.BasicBinder: TRACE
+    orm.jdbc.bind: TRACE
+  springframework:
+    data.*.*: trace
+    cache.*: trace
+
+# Seeders Configuration
+author-seeder:
+  enabled: ${AUTHOR_SEED_ENABLED:false}
+  author-count: ${AUTHOR_COUNT:100000}
+  book-per-author: ${BOOK_PER_AUTHOR:2}
+
+# Server Error Configuration
+server.error:
+  include-stacktrace: ${INCLUDE_STACKTRACE:ALWAYS}
+  include-message: ${INCLUDE_MESSAGE:ALWAYS}
