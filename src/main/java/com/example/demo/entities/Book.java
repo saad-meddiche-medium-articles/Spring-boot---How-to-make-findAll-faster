@@ -16,5 +16,6 @@ public class Book {
     private Double price;
 
     @ManyToOne
+    @JoinColumn(nullable = false)
     private Author author;
 }

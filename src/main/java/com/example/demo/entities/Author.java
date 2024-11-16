@@ -17,6 +17,6 @@ public class Author {
 
     private String lastName;
 
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", cascade = CascadeType.PERSIST, orphanRemoval = true)
     private List<Book> books;
 }
